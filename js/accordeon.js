@@ -1,12 +1,23 @@
-const contents = document.querySelectorAll('.program-line__content')
+const accordeon = () => {
+    const contents = document.querySelectorAll('.program-line__content')
+    const contentDescr = document.querySelectorAll('.program-line__descr')
 
-contents.forEach((elem) => {
-    const title = elem.querySelector('.program-line__title')
-    const descr = elem.querySelector('.program-line__descr')
+    contents.forEach((elem) => {
+        const title = elem.querySelector('.program-line__title')
+        const descr = elem.querySelector('.program-line__descr')
 
-    title.addEventListener('click', () => {
-//        descr.classList.remove('active') удаляет элемент при нажатии на Неделя 1
-//        descr.classList.add('active') добавляет дискрипшин для других Недель
-        descr.classList.toggle('active') // добавляет и удаляет дискрипшин
-    }) 
-})
+        descr.style.transition = 'height .3s'
+        descr.style.overflow = 'hidden'
+
+        title.addEventListener('click', () => {
+            contentDescr.forEach((tab) => {
+                if (tab === descr) {
+                    tab.style.height = tab.scrollHeight + 'px'
+                } else {
+                    tab.style.height = 0
+                }
+            })
+        })
+    })
+}
+accordeon()
